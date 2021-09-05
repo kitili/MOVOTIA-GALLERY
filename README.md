@@ -44,7 +44,7 @@ As a user of the application you will be able to:
 6. Then serve the app, so that the app will be available on localhost:8000, to do this run the command below
 
 
-       python manage.py runserver
+       python3 manage.py runserver
 7. Use the navigation bar/navbar/navigation pane/menu to navigate and explore the app.
 
 
