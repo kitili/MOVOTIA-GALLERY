@@ -1,0 +1,88 @@
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{%extends 'base.html'%} 
+{% block content %}
+<div class="owl-carousel owl-theme">
+        <div class="item">
+            <img class="img-fluid image" src="https://bit.ly/2GRA59M">
+        </div>
+        <div class="item">
+            <img class="img-fluid image" src="https://bit.ly/36OxHLf">
+        </div>
+        <div class="item">
+            <img class="img-fluid image" src="https://bit.ly/2GVea17">
+        </div>
+        <div class="item">
+            <img class="img-fluid image" src="https://bit.ly/2UgGraB">
+        </div>
+        <div class="item">
+            <img class="img-fluid image" src="https://bit.ly/2tut4IU">
+        </div>
+        <div class="item">
+            <img class="img-fluid image" src="https://bit.ly/2OkKfUb">
+        </div>
+        <div class="item">
+            <img class="img-fluid image" src="https://bit.ly/2tnMjne">
+        </div>
+      </div>
+<script>
+function CopyFunction() {
+  var copyText = document.getElementById("imagelink");
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+
+	<div class="container-fluid">
+        <div class="row">
+                <div class="row">
+                        {% if all_images%}
+
+                        {% else %}
+                          <h2> No Search categories found {{message}}</h2>
+                        {% endif %}
+                    
+                      </div>
+        </div>
+		<div class="row">
+            {% for image in all_images %}
+
+
+                    <div class="col-md-3 col-sm-4 col-xs-12 single_portfolio_text">
+                        <img src="{{image.image_path.url}}" alt="" >
+                        <div class="portfolio_images_overlay text-center">
+                            <h6 class="colored-font" >{{image.image_name}}</h6>
+                            <p class="colored-font"> Description:{{ image.image_description }}</p>
+
+                            <p class="colored-font"> Location taken : {{image.image_location}}</p>
+                             <p class="colored-font">Category : {{image.image_category}}</p>
+                            
+                            <i href="#" class="fa fa-download" aria-hidden="true" Style="color:white;margin-bottom:5%;">Download:{{ image.image_download }}</i>
+                            <br>
+                            
+                            <input type="text" id="imagelink" class="form-control input-sm" value="https://avechigallery.herokuapp.com{{image.image_path.url}}" class="hidden" style="display:none;">
+                            <button class="btn btn-primary btn-sm " onclick="CopyFunction()">
+                                <i class="fa fa-copy" style="color: #d6962c"></i> Copy Link
+                            </button>
+                            <a class="fancybox btn btn-primary btn-sm " rel="gallery" href="{{image.image_path.url}}"><i  style="color:#d6962c" class="fa fa-eye"></i> View Image</a>
+                           
+                                <p class="colored-font">{{ image.image_download }}</p>
+
+                        </div>
+                        
+                </div>
+
+                
+                        {% endfor %}
+
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
