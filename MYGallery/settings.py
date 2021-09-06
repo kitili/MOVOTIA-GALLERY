@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hduxlg*r#tev!kh0uh0ss6@++nlx18+*=-hz#t1l@#&+&)5o=s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -178,6 +178,5 @@ cloudinary.config(
 )
 
 
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
+
                        
