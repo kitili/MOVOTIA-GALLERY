@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-# import django_heroku
-# import dj_database_url
+import django_heroku
+import dj_database_url
 from decouple import config,Csv
 import cloudinary
 import cloudinary.uploader
@@ -125,6 +125,10 @@ DATABASES = {
     }
 }
 
+PRODUCTION=  os .environ.get('PRODUCTION')
+if PRODUCTION:
+    DATABASES['default']=dj_database_url.config()
+import pdb;pdb.set_trace()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -170,6 +174,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
+                       
 
 # adding config
 cloudinary.config( 
