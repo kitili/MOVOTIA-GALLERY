@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY =  os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = os.environ.get('DEBUG','False')=='True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
@@ -116,7 +116,13 @@ WSGI_APPLICATION = 'MYGallery.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+
+DATABASES={}
+PRODUCTION=  os .environ.get('PRODUCTION')
+if PRODUCTION=='True':
+    DATABASES['default']=dj_database_url.config()
+else:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gallery',
@@ -124,11 +130,6 @@ DATABASES = {
         'PASSWORD': 'shena',
     }
 }
-
-PRODUCTION=  os .environ.get('PRODUCTION')
-if PRODUCTION:
-    DATABASES['default']=dj_database_url.config()
-import pdb;pdb.set_trace()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -180,9 +181,9 @@ django_heroku.settings(locals())
 
 # adding config
 cloudinary.config( 
-  cloud_name = "dmzv1spct", 
-  api_key = "643466649384675", 
-  api_secret = "Yo0zQz0sfZcSz4CLJoN6M1EBQp48" 
+  cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
+  api_key = os.environ.get('API_KEY'),
+  api_secret = os.environ.get('API_SECRET') 
 )
 
 
